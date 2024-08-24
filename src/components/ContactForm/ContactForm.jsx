@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import { nanoid } from "nanoid";
 import { useId } from "react";
 
 import { useDispatch } from "react-redux";
@@ -10,7 +9,7 @@ import { changeFilter } from "../../redux/filtersSlice";
 
 import css from "./ContactForm.module.css";
 
-const phoneRegExp = /\d{3}-\d{2}-\d{2}$/;
+const phoneRegExp = /\d{3}-\d{3}-\d{4}$/;
 const validationFormSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
@@ -32,7 +31,7 @@ function ContactForm() {
   };
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact({ id: nanoid(), ...values }));
+    dispatch(addContact(values));
     dispatch(changeFilter(""));
     actions.resetForm();
   };
@@ -67,7 +66,7 @@ function ContactForm() {
             type="tel"
             name="number"
             id={numberId}
-            placeholder="mask: xxx-xx-xx"
+            placeholder="mask: xxx-xxx-xxxx"
           />
           <ErrorMessage
             className={css.errMessage}
