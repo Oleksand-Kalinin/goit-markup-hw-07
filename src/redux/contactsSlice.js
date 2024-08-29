@@ -19,6 +19,7 @@ const contactsSlice = createSlice({
             //fetchContacts
             .addCase(fetchContacts.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
             .addCase(fetchContacts.fulfilled, (state, action) => {
                 state.loading = false;
@@ -33,6 +34,7 @@ const contactsSlice = createSlice({
             //addContact
             .addCase(addContact.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
             .addCase(addContact.fulfilled, (state, action) => {
                 state.loading = false;
@@ -48,6 +50,7 @@ const contactsSlice = createSlice({
             //deleteContact
             .addCase(deleteContact.pending, (state) => {
                 state.loading = true;
+                state.error = null;
             })
             .addCase(deleteContact.fulfilled, (state, action) => {
                 state.loading = false;
